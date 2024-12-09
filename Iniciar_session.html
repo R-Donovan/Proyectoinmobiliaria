@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta / Iniciar Sesión</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tabs button {
+            background-color: #f8f8f8;
+            color: #333;
+            border: 1px solid #d32f2f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tabs button.active {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .tabs button:hover {
+            background-color: #b71c1c;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d32f2f;
+        }
+
+        .form-group button {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #b71c1c;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="tabs">
+            <button id="login-tab" class="active">Iniciar Sesión</button>
+            <button id="register-tab">Crear Cuenta</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form">
+            <h2>Iniciar Sesión</h2>
+            <div class="form-group">
+                <label for="email-login">Correo Electrónico</label>
+                <input type="email" id="email-login" placeholder="Ingrese su correo">
+            </div>
+            <div class="form-group">
+                <label for="password-login">Contraseña</label>
+                <input type="password" id="password-login" placeholder="Ingrese su contraseña">
+            </div>
+            <div class="form-group">
+                <button type="submit">Iniciar Sesión</button>
+            </div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="hidden">
+            <h2>Crear Cuenta</h2>
+            <div class="form-group">
+                <label for="name-register">Nombre</label>
+                <input type="text" id="name-register" placeholder="Ingrese su nombre">
+            </div>
+            <div class="form-group">
+                <label for="last-name-register">Apellido</label>
+                <input type="text" id="last-name-register" placeholder="Ingrese su apellido">
+            </div>
+            <div class="form-group">
+                <label for="email-register">Correo Electrónico</label>
+                <input type="email" id="email-register" placeholder="Ingrese su correo">
+            </div>
+            <div class="form-group">
+                <label for="phone-register">Teléfono</label>
+                <input type="text" id="phone-register" placeholder="Ingrese su teléfono">
+            </div>
+            <div class="form-group">
+                <label for="address-register">Dirección</label>
+                <input type="text" id="address-register" placeholder="Ingrese su dirección">
+            </div>
+            <div class="form-group">
+                <label for="role-register">Rol</label>
+                <select id="role-register">
+                    <option value="comprador">Comprador</option>
+                    <option value="vendedor">Vendedor</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Crear Cuenta</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Switching between tabs
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        loginTab.addEventListener('click', () => {
+            loginTab.classList.add('active');
+            registerTab.classList.remove('active');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+
+        registerTab.addEventListener('click', () => {
+            registerTab.classList.add('active');
+            loginTab.classList.remove('active');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main container */
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 25%;
+            background-color: #fff;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Rango de precios */
+        .price-range {
+            margin-bottom: 20px;
+        }
+
+        .price-range label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .price-range div {
+            display: flex;
+            align-items: center;
+        }
+
+        .price-range span {
+            font-size: 14px;
+            margin: 0 10px;
+        }
+
+        /* Property list */
+        .property-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .property-card {
+            display: flex;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            gap: 15px;
+        }
+
+        .property-card img {
+            width: 150px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .property-card .details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .property-card .details h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #d32f2f;
+        }
+
+        .property-card .details p {
+            margin: 5px 0 0;
+            color: #555;
+        }
+
+        /* Login Button */
+        .login-button {
+            background-color: #fff;
+            color: #d32f2f;
+            border: 1px solid #d32f2f;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .login-button:hover {
+            background-color: #d32f2f;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Inmobiliaria</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Propiedades</a>
+            <a href="#">Favoritos</a>
+            <a href="#">Blog</a>
+            <a href="#">Contacto</a>
+            <a href="#" class="login-button">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <h2>Rango de Precio</h2>
+            <div class="price-range">
+                <label for="price-range">Selecciona el rango</label>
+                <div>
+                    <span id="price-min">0</span>
+                    <input id="price-range" type="range" min="0" max="800000" step="10000" value="0"
+                        style="width: 200px;">
+                    <span id="price-max">800,000</span>
+                </div>
+            </div>
+        </aside>
+
+        <section class="property-list">
+            <div class="property-card">
+                <img src="https://via.placeholder.com/150" alt="Propiedad">
+                <div class="details">
+                    <h3>Departamento</h3>
+                    <p>$50,000</p>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="https://via.placeholder.com/150" alt="Propiedad">
+                <div class="details">
+                    <h3>Casa</h3>
+                    <p>$591,000</p>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="https://via.placeholder.com/150" alt="Propiedad">
+                <div class="details">
+                    <h3>Casa</h3>
+                    <p>$750,000</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Actualiza el rango dinámicamente al mover el slider
+        const priceRange = document.getElementById('price-range');
+        const priceMin = document.getElementById('price-min');
+
+        priceRange.addEventListener('input', (event) => {
+            priceMin.textContent = parseInt(event.target.value).toLocaleString('en-US');
+        });
+    </script>
+</body>
+
+</html>

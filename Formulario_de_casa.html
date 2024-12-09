@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Propiedad</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Form container */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            margin: 0 0 20px;
+            color: #d32f2f;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Agregar Propiedad</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Mis Propiedades</a>
+            <a href="#">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Formulario para Agregar Propiedad</h2>
+        <form action="/guardar_propiedad" method="POST" enctype="multipart/form-data">
+            <!-- Imágenes -->
+            <div class="form-group">
+                <label for="fotos">Fotos de la propiedad:</label>
+                <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
+            </div>
+
+            <!-- Título -->
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Ejemplo: Casa en el centro" required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" placeholder="Escribe una descripción de la propiedad..." required></textarea>
+            </div>
+
+            <!-- Precio -->
+            <div class="form-group">
+                <label for="precio">Precio (en pesos):</label>
+                <input type="number" id="precio" name="precio" placeholder="Ejemplo: 1250000" required>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="form-group">
+                <label for="ubicacion">Ubicación:</label>
+                <input type="text" id="ubicacion" name="ubicacion" placeholder="Ejemplo: Avenida Principal #123, Ciudad" required>
+            </div>
+
+            <!-- Número de Habitaciones -->
+            <div class="form-group">
+                <label for="habitaciones">Número de Habitaciones:</label>
+                <input type="number" id="habitaciones" name="habitaciones" min="1" placeholder="Ejemplo: 3" required>
+            </div>
+
+            <!-- Número de Baños -->
+            <div class="form-group">
+                <label for="banos">Número de Baños:</label>
+                <input type="number" id="banos" name="banos" min="1" placeholder="Ejemplo: 2" required>
+            </div>
+
+            <!-- Tamaño -->
+            <div class="form-group">
+                <label for="tamano">Tamaño (m²):</label>
+                <input type="number" id="tamano" name="tamano" placeholder="Ejemplo: 150" required>
+            </div>
+
+            <!-- Botón para guardar -->
+            <button type="submit">Guardar Propiedad</button>
+        </form>
+    </div>
+</body>
+
+</html>
