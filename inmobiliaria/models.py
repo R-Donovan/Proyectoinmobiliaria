@@ -1,26 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Dueño(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    correo = models.EmailField()
-    telefono = models.CharField(max_length=15)
-    direccion = models.TextField()
-
-    def __str__(self):
-        return f"{self.nombre} {self.apellido}"
-
-class Agente(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    correo = models.EmailField()
-    telefono = models.CharField(max_length=15)
-    direccion = models.TextField()
+class UserProfile(models.Model):
+    USER_ROLES = (
+        ('dueño', 'Dueño'),
+        ('cliente', 'Cliente'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    rol = models.CharField(max_length=10, choices=USER_ROLES)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return f"{self.user.username} ({self.rol})"
 
-class Cliente(models.Model):
+class Dueno(models.Model):
+    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     correo = models.EmailField()
@@ -39,8 +32,7 @@ class Propiedad(models.Model):
     no_banos = models.IntegerField()
     tamano = models.DecimalField(max_digits=10, decimal_places=2)
     dueno = models.ForeignKey(Dueno, on_delete=models.CASCADE)
-    agente = models.ForeignKey(Agente, on_delete=models.CASCADE)
-    cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True)
+    imagen = models.ImageField(upload_to='propiedades/', null=True, blank=True)
 
     def __str__(self):
         return self.titulo

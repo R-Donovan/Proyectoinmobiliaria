@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inmobiliaria</title>
     <style>
-        /* Global Styles */
+        /* Estilos de la página */
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
@@ -42,15 +42,12 @@
             text-decoration: underline;
         }
 
-        /* Main container */
         .container {
             display: flex;
-            flex-direction: row;
             gap: 20px;
             padding: 20px;
         }
 
-        /* Sidebar styles */
         .sidebar {
             width: 25%;
             background-color: #fff;
@@ -64,14 +61,8 @@
             margin-bottom: 10px;
         }
 
-        /* Rango de precios */
         .price-range {
             margin-bottom: 20px;
-        }
-
-        .price-range label {
-            font-size: 16px;
-            font-weight: bold;
         }
 
         .price-range div {
@@ -84,7 +75,6 @@
             margin: 0 10px;
         }
 
-        /* Property list */
         .property-list {
             flex: 1;
             display: flex;
@@ -125,7 +115,6 @@
             color: #555;
         }
 
-        /* Login Button */
         .login-button {
             background-color: #fff;
             color: #d32f2f;
@@ -147,56 +136,49 @@
     <header>
         <h1>Inmobiliaria</h1>
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Propiedades</a>
-            <a href="#">Favoritos</a>
-            <a href="#">Blog</a>
+            <a href="/">Inicio</a>
             <a href="#">Contacto</a>
-            <a href="#" class="login-button">Iniciar Sesión</a>
+            <a href="{% url 'login' %}" class="login-button">Iniciar Sesión</a>
         </nav>
     </header>
+    <!-- Parte que permite que solo Dueños o admins puedan agregar casas -->
+    <main class="container">
+    {% if es_dueno_o_admin %}
+        <a href="{% url 'agregar_casa' %}" class="btn">Agregar Casa</a>
+    {% endif %}
 
     <main class="container">
         <aside class="sidebar">
             <h2>Rango de Precio</h2>
-            <div class="price-range">
+            <form method="get">
                 <label for="price-range">Selecciona el rango</label>
                 <div>
                     <span id="price-min">0</span>
-                    <input id="price-range" type="range" min="0" max="800000" step="10000" value="0"
+                    <input id="price-range" type="range" min="0" max="800000" step="10000" value="0" name="precio"
                         style="width: 200px;">
                     <span id="price-max">800,000</span>
+                    <button type="submit">Filtrar</button>
                 </div>
-            </div>
+            </form>
         </aside>
 
         <section class="property-list">
-            <div class="property-card">
-                <img src="https://via.placeholder.com/150" alt="Propiedad">
-                <div class="details">
-                    <h3>Departamento</h3>
-                    <p>$50,000</p>
+            {% for casa in casas %}
+                <div class="property-card">
+                    <img src="{{ casa.imagen.url }}" alt="Propiedad" onerror="this.src='https://via.placeholder.com/150'">
+                    <div class="details">
+                        <h3>{{ casa.titulo }}</h3>
+                        <p>${{ casa.precio }}</p>
+                        <p>{{ casa.ubicacion }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="property-card">
-                <img src="https://via.placeholder.com/150" alt="Propiedad">
-                <div class="details">
-                    <h3>Casa</h3>
-                    <p>$591,000</p>
-                </div>
-            </div>
-            <div class="property-card">
-                <img src="https://via.placeholder.com/150" alt="Propiedad">
-                <div class="details">
-                    <h3>Casa</h3>
-                    <p>$750,000</p>
-                </div>
-            </div>
+            {% empty %}
+                <p>No hay propiedades disponibles.</p>
+            {% endfor %}
         </section>
     </main>
 
     <script>
-        // Actualiza el rango dinámicamente al mover el slider
         const priceRange = document.getElementById('price-range');
         const priceMin = document.getElementById('price-min');
 

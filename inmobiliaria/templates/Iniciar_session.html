@@ -110,15 +110,16 @@
         </div>
 
         <!-- Login Form -->
-        <form id="login-form">
+        <form id="login-form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
             <h2>Iniciar Sesión</h2>
             <div class="form-group">
                 <label for="email-login">Correo Electrónico</label>
-                <input type="email" id="email-login" placeholder="Ingrese su correo">
+                <input type="email" id="email-login" name="username" placeholder="Ingrese su correo" required>
             </div>
             <div class="form-group">
                 <label for="password-login">Contraseña</label>
-                <input type="password" id="password-login" placeholder="Ingrese su contraseña">
+                <input type="password" id="password-login" name="password" placeholder="Ingrese su contraseña" required>
             </div>
             <div class="form-group">
                 <button type="submit">Iniciar Sesión</button>
@@ -126,34 +127,34 @@
         </form>
 
         <!-- Register Form -->
-        <form id="register-form" class="hidden">
+        <form id="register-form" class="hidden" method="post" action="{% url 'register' %}">
+            {% csrf_token %}
             <h2>Crear Cuenta</h2>
             <div class="form-group">
                 <label for="name-register">Nombre</label>
-                <input type="text" id="name-register" placeholder="Ingrese su nombre">
+                <input type="text" id="name-register" name="nombre" placeholder="Ingrese su nombre" required>
             </div>
             <div class="form-group">
                 <label for="last-name-register">Apellido</label>
-                <input type="text" id="last-name-register" placeholder="Ingrese su apellido">
+                <input type="text" id="last-name-register" name="apellido" placeholder="Ingrese su apellido" required>
             </div>
             <div class="form-group">
                 <label for="email-register">Correo Electrónico</label>
-                <input type="email" id="email-register" placeholder="Ingrese su correo">
+                <input type="email" id="email-register" name="correo" placeholder="Ingrese su correo" required>
             </div>
             <div class="form-group">
                 <label for="phone-register">Teléfono</label>
-                <input type="text" id="phone-register" placeholder="Ingrese su teléfono">
+                <input type="text" id="phone-register" name="telefono" placeholder="Ingrese su teléfono" required>
             </div>
             <div class="form-group">
                 <label for="address-register">Dirección</label>
-                <input type="text" id="address-register" placeholder="Ingrese su dirección">
+                <input type="text" id="address-register" name="direccion" placeholder="Ingrese su dirección" required>
             </div>
             <div class="form-group">
                 <label for="role-register">Rol</label>
-                <select id="role-register">
-                    <option value="comprador">Comprador</option>
-                    <option value="vendedor">Vendedor</option>
-                    <option value="admin">Admin</option>
+                <select id="role-register" name="rol" required>
+                    <option value="cliente">Comprador</option>
+                    <option value="dueño">Vendedor</option>
                 </select>
             </div>
             <div class="form-group">

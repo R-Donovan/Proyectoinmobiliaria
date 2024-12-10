@@ -99,19 +99,20 @@
     <header>
         <h1>Agregar Propiedad</h1>
         <nav>
-            <a href="#">Inicio</a>
+            <a href="{% url 'index' %}">Inicio</a>
             <a href="#">Mis Propiedades</a>
-            <a href="#">Cerrar Sesión</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
         </nav>
     </header>
 
     <div class="container">
         <h2>Formulario para Agregar Propiedad</h2>
-        <form action="/guardar_propiedad" method="POST" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <!-- Imágenes -->
             <div class="form-group">
                 <label for="fotos">Fotos de la propiedad:</label>
-                <input type="file" id="fotos" name="fotos" accept="image/*" multiple required>
+                <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
             </div>
 
             <!-- Título -->
