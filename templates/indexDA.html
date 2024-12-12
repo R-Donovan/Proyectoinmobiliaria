@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="container">
+    {% if user.is_authenticated and user.userprofile.rol in ['dueño', 'admin'] %}
+        <a href="{% url 'agregar_propiedad' %}" class="btn">Agregar Propiedad</a>
+        <a href="{% url 'editar_propiedad' %}" class="btn">Editar Propiedad</a>
+    {% endif %}
+
+    <!-- Sidebar para filtrar propiedades -->
+    <aside class="sidebar">
+        <h2>Rango de Precio</h2>
+        <form method="get">
+            <label for="price-range">Selecciona el rango</label>
+            <div>
+                <span id="price-min">0</span>
+                <input id="price-range" type="range" min="0" max="800000" step="10000" value="0" name="precio"
+                    style="width: 200px;">
+                <span id="price-max">800,000</span>
+                <button type="submit">Filtrar</button>
+            </div>
+        </form>
+    </aside>
+
+    <!-- Listado de propiedades -->
+    <section class="property-list">
+        {% for propiedad in propiedades %}
+            <div class="property-card">
+                <img src="{{ propiedad.imagen.url }}" alt="Propiedad" onerror="this.src='https://via.placeholder.com/150'">
+                <div class="details">
+                    <h3>{{ propiedad.titulo }}</h3>
+                    <p>${{ propiedad.precio }}</p>
+                    <p>{{ propiedad.ubicacion }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>No hay propiedades disponibles.</p>
+        {% endfor %}
+    </section>
+</main>
+
+<script>
+    const priceRange = document.getElementById('price-range');
+    const priceMin = document.getElementById('price-min');
+
+    priceRange.addEventListener('input', (event) => {
+        priceMin.textContent = parseInt(event.target.value).toLocaleString('en-US');
+    });
+</script>
+{% endblock %}

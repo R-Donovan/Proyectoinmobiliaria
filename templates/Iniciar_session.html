@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <!-- Login Form -->
+    <form id="login-form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h2>Iniciar Sesión</h2>
+        <div class="form-group">
+            <label for="username-login">Nombre de Usuario</label>
+            <input type="text" id="username-login" name="username" placeholder="Ingrese su usuario" required>
+        </div>
+        <div class="form-group">
+            <label for="password-login">Contraseña</label>
+            <input type="password" id="password-login" name="password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Iniciar Sesión</button>
+        </div>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" class="hidden" method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <h2>Crear Cuenta</h2>
+        <div class="form-group">
+            <label for="name-register">Nombre</label>
+            <input type="text" id="name-register" name="nombre" placeholder="Ingrese su nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name-register">Apellido</label>
+            <input type="text" id="last-name-register" name="apellido" placeholder="Ingrese su apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="email-register">Correo Electrónico</label>
+            <input type="email" id="email-register" name="correo" placeholder="Ingrese su correo" required>
+        </div>
+        <div class="form-group">
+            <label for="phone-register">Teléfono</label>
+            <input type="text" id="phone-register" name="telefono" placeholder="Ingrese su teléfono" required>
+        </div>
+        <div class="form-group">
+            <label for="address-register">Dirección</label>
+            <input type="text" id="address-register" name="direccion" placeholder="Ingrese su dirección" required>
+        </div>
+        <div class="form-group">
+            <label for="role-register">Rol</label>
+            <select id="role-register" name="rol" required>
+                <option value="cliente">Comprador</option>
+                <option value="dueño">Vendedor</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit">Crear Cuenta</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Switching between tabs
+    const loginTab = document.getElementById('login-tab');
+    const registerTab = document.getElementById('register-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+
+    loginTab.addEventListener('click', () => {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+    });
+
+    registerTab.addEventListener('click', () => {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+    });
+</script>
+{% endblock %}

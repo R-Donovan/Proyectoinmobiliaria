@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>Agregar Propiedad</h1>
+    <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'mis_propiedades' %}">Mis Propiedades</a>
+        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Formulario para Agregar Propiedad</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Imágenes -->
+        <div class="form-group">
+            <label for="imagen">Foto de la propiedad:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*">
+        </div>
+
+        <!-- Título -->
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Ejemplo: Casa en el centro" required>
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="4" placeholder="Escribe una descripción de la propiedad..." required></textarea>
+        </div>
+
+        <!-- Precio -->
+        <div class="form-group">
+            <label for="precio">Precio (en pesos):</label>
+            <input type="number" id="precio" name="precio" placeholder="Ejemplo: 1250000" required>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="form-group">
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" name="ubicacion" placeholder="Ejemplo: Avenida Principal #123, Ciudad" required>
+        </div>
+
+        <!-- Número de Habitaciones -->
+        <div class="form-group">
+            <label for="no_habitaciones">Número de Habitaciones:</label>
+            <input type="number" id="no_habitaciones" name="no_habitaciones" min="1" placeholder="Ejemplo: 3" required>
+        </div>
+
+        <!-- Número de Baños -->
+        <div class="form-group">
+            <label for="no_banos">Número de Baños:</label>
+            <input type="number" id="no_banos" name="no_banos" min="1" placeholder="Ejemplo: 2" required>
+        </div>
+
+        <!-- Tamaño -->
+        <div class="form-group">
+            <label for="tamano">Tamaño (m²):</label>
+            <input type="number" id="tamano" name="tamano" placeholder="Ejemplo: 150" required>
+        </div>
+
+        <!-- Botón para guardar -->
+        <button type="submit">Guardar Propiedad</button>
+    </form>
+</div>
+{% endblock %}

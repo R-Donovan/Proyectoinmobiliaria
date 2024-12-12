@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- Título de la página -->
+    <h1>Editar Propiedad: {{ propiedad.titulo }}</h1>
+
+    <!-- Formulario para editar la propiedad -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Renderiza todos los campos del formulario -->
+        {{ form.as_p }}
+
+        <!-- Botón para guardar los cambios -->
+        <div class="form-group">
+            <button type="submit">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
